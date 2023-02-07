@@ -1,0 +1,20 @@
+/* this fun trick can be used to make responsive grid layout system without writing even a single line of media query... :)
+
+ how ever it is possible to extend its responsiveness for fixed size boxes with a little amount of media query. but still it saves a lot of bundle size. */
+
+.responsive-grid-sm{
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(10rem, calc(10rem + 1vw), 10rem), 1fr));
+}
+
+.responsive-grid-md{
+  display: grid;
+  gap: 1rem;
+  place-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(20rem, calc(25rem + 1vw), 30rem), 1fr));
+}
+
+
+/* similarly you can create more variants. */

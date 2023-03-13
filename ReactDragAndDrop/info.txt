@@ -1,0 +1,35 @@
+This component -
+    1. is dependant on react-dropzone library.
+    2. can be used with custom states and react-hook-form library.
+    3. can be use with nextjs.
+    4. has feature like limiting upload, adding validations.
+    5. can show preview in case of image input.
+    5. has feature to remove selected images from preview.
+    6. has its own css in modular file. [supported with nextjs, if you are using with react consider copying classes in a css file and modify jsx file accordingly.
+    
+    
+How to use: (react-hook-form)
+
+ <Controller
+    name='images'
+    control={control}
+    render={
+        ({ field: { value, onChange } }) => (
+             <ImageDrag
+              className={classNames("", { "border-red": errors.images })}
+              onChange={onChange}
+              saveImage={saveImage} // function to post image on server use if needed in your context.
+              multiple={true}
+             />
+         )
+     }
+     // rules={
+     //     {
+     //         validate: (values) => {
+     //             if (values && values.length < 3) {
+     //                 return "Minimum 3 images are required."
+     //             }
+     //         }
+     //     }
+     // }
+  />

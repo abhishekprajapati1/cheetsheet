@@ -1,0 +1,33 @@
+.filter-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid rgb(206, 206, 206);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.priceRageContainer input[type="range"] {
+    width: 100%;
+    min-height: .5rem;
+}
+
+.brandsContainer {
+    height: 13rem;
+    overflow: auto;
+    transition: var(--transition-4);
+}
+
+.brandsContainer input[type="text"] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100% !important;
+    padding-left: .8rem;
+}
+
+.searchContainer {
+    border-bottom: 1px solid gray;
+}
+
+.allBrands {}

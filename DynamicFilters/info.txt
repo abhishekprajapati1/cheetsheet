@@ -1,0 +1,14 @@
+Warning:: there are a lot of things that will cause code to break in this folder. you will have to do a lot of customization.
+
+
+This is a truly dynamic filter system just like flipkar has. if you use bootstrap 5 you will see exactly same design.
+
+
+tips:
+
+-remove unused items from components.
+-remove all icons and put yours
+-convert module.css to a .css file if not using nextjs. [you can also create your own styles]
+-uses a lot of bs5 classes.
+-depends on zustand for state management. [however logic will remain same for any state management library out there.]
+-fork to improve logics and then create a pull request. :)

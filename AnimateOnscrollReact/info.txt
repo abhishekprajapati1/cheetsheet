@@ -1,0 +1,11 @@
+depend on animate.css. you can install:
+    npm: npm i animate.css
+    yarn: yarn add animate.css
+
+    or you can also use it via cdn.
+
+Issues: haven't tested it yet for all cases.
+        1. There is a flicker when using animation that are horizontal such as zoom or slide up/down.
+
+
+pull requests are welcomed :)

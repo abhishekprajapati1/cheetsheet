@@ -1,0 +1,48 @@
+useQueryState: A hook to manage ui state straight from the url. [results in better ux as it can create a sharable link for a ui state.]
+
+dependencies:
+    This hood have "qs" as a dependency. So make sure to install that before start using it.
+
+params:
+    it accepts an object containing following properties in params:
+    1. query | string : the name of the query.
+    2. defaultValue : the default value for the query can be any primitive datatypes in js || non-primitives are not supported yet.
+    3. options | object : optional options object. You can configure whether url should be stacked in browser or not.
+
+
+returns:
+    this hook returns an object containing two properties
+    1. state | primitive : the state for the url query.
+    2. setter | function : the setter function for mutating state.
+
+
+
+
+
+Usage:
+
+some where in your component...
+
+import useQueryState from 'useQueryState.js';
+
+const MyComp = () => {
+    const { state: modal, setter } = useQueryState({query: "open_modal", defaultValue: false});
+
+    return (
+        ....
+        ..
+        {
+            modal && <Modal />
+        }
+        ..
+        ....
+        <button onClick={() => setter(true)}>show modal</button>
+    )
+}
+
+
+===========================================================
+        Improvements/Suggestions are welcomed
+===========================================================
+
+Create a pull request....

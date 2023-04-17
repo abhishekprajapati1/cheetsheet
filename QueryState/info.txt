@@ -1,7 +1,7 @@
 useQueryState: A hook to manage ui state straight from the url. [results in better ux as it can create a sharable link for a ui state.]
 
 dependencies:
-    This hood have "qs" as a dependency. So make sure to install that before start using it.
+    This hook have "qs" as a dependency. So make sure to install that before start using it.
 
 params:
     it accepts an object containing following properties in params:

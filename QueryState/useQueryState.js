@@ -2,7 +2,6 @@ import qs from "qs"
 import { useCallback, useState, useEffect } from "react"
 import { useRouter } from 'next/router';
 
-
 const useQueryState = ({ query, defaultValue, options = {} }) => {
     const router = useRouter();
     const [newQueryObj, setNewQueryObj] = useState({});
@@ -15,7 +14,7 @@ const useQueryState = ({ query, defaultValue, options = {} }) => {
                     pathname: pathname,
                     query: {
                         ...newQueryObj,
-                        ...(!options.replaceQuery && { [query]: value }),
+                        ...(!options.removeQuery && { [query]: value }),
                     }
                 }
                 if (options.replaceQuery) router.replace(href, href, { shallow: true })
@@ -24,14 +23,15 @@ const useQueryState = ({ query, defaultValue, options = {} }) => {
                 const href = {
                     pathname: pathname,
                     query: {
-                        ...(!options.replaceQuery && { [query]: value }),
+                        ...(!options.removeQuery && { [query]: value }),
                     }
                 }
+
                 if (options.replaceQuery) router.replace(href, href, { shallow: true });
                 else router.push(href, href, { shallow: true })
             }
         },
-        [router]
+        [pathname, newQueryObj]
     )
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const useQueryState = ({ query, defaultValue, options = {} }) => {
             setPathname(router.asPath);
             setNewQueryObj({});
         }
-    }, [router]);
+    }, [router, setPathname, setNewQueryObj]);
 
 
     return {

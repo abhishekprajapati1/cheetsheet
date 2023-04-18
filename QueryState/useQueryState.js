@@ -1,6 +1,7 @@
 import qs from "qs"
 import { useCallback, useState, useEffect } from "react"
 import { useRouter } from 'next/router';
+import generateQuery from './generateQuery';
 
 const useQueryState = ({ query, defaultValue, options = {} }) => {
     const router = useRouter();
@@ -9,29 +10,62 @@ const useQueryState = ({ query, defaultValue, options = {} }) => {
 
     const setQuery = useCallback(
         value => {
+            generateQuery({ query, existingState: newQueryObj, newState: value });
             if (Object.keys(newQueryObj).length > 0) {
-                const href = {
+                let href = {
                     pathname: pathname,
-                    query: {
-                        ...newQueryObj,
-                        ...(!options.removeQuery && { [query]: value }),
-                    }
-                }
+                    query: generateQuery({ query, existingState: newQueryObj, newState: value })
+                };
+                // if (typeof value === 'object') {
+                //     href = {
+                //         pathname: pathname,
+                //         query: {
+                //             ...newQueryObj,
+                //             [query]: JSON.stringify(value),
+                //         }
+                //     }
+                // } else {
+                //     href = {
+                //         pathname: pathname,
+                //         query: {
+                //             ...newQueryObj,
+                //             [query]: value,
+                //         }
+                //     }
+                // }
+
+
                 if (options.replaceQuery) router.replace(href, href, { shallow: true })
                 else router.push(href, href, { shallow: true })
             } else {
-                const href = {
+                let href = {
                     pathname: pathname,
-                    query: {
-                        ...(!options.removeQuery && { [query]: value }),
-                    }
-                }
+                    query: generateQuery({ query, existingState: newQueryObj, newState: value })
+                };
+
+                // if (typeof value === 'object') {
+                //     href = {
+                //         pathname: pathname,
+                //         query: {
+                //             ...newQueryObj,
+                //             [query]: JSON.stringify(value),
+                //         }
+                //     }
+                // } else {
+                //     href = {
+                //         pathname: pathname,
+                //         query: {
+                //             ...newQueryObj,
+                //             [query]: value,
+                //         }
+                //     }
+                // }
 
                 if (options.replaceQuery) router.replace(href, href, { shallow: true });
                 else router.push(href, href, { shallow: true })
             }
         },
-        [pathname, newQueryObj]
+        [pathname, router]
     )
 
     useEffect(() => {
@@ -49,8 +83,9 @@ const useQueryState = ({ query, defaultValue, options = {} }) => {
     }, [router, setPathname, setNewQueryObj]);
 
 
+
     return {
-        state: newQueryObj[query] ? newQueryObj[query] : defaultValue,
+        state: newQueryObj[query] ? JSON.parse(newQueryObj[query]) : defaultValue,
         setter: setQuery,
     }
 }

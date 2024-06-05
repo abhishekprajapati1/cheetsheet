@@ -1,0 +1,3 @@
+Custom file input that supports drag and drop. 
+It uses react-dropzone library.
+Can be further enhanced for validation and other things offered by react-dropzone.
